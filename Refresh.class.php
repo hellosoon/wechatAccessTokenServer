@@ -11,7 +11,7 @@ class Refresh
     public static function run($count = 1)
     {
         if ($count > 3) {
-            return 0;
+            return ERROR_MSG;
         }
         $result = self::refreshToken(++$count);
         if ($result == 1) {

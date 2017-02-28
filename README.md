@@ -16,3 +16,6 @@
 
 获取web授权需要的accesstoken：
 192.168.1.111/wechatAccessTokenServer/web.php?code=
+
+获取出错返回 error
+获取成功返回 accesstoken
