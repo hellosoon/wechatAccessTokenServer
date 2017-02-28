@@ -31,7 +31,7 @@ class Refresh
         if (intval($flag) == 1) {//直接退出
             return '1';
         } else {//获取token
-            @file_put_contents($flagPath, '1');//立flag
+            @file_put_contents($flagPath, '1',LOCK_EX);//立flag
             $tokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=" . config::get('APPID'). "&secret=" . config::get('AppSecret');
             $json = @file_get_contents($tokenUrl);//获取token
             $result = json_decode($json, true);
@@ -45,7 +45,7 @@ class Refresh
                 $token .= " " . (time() + intval($tokenExpires));//有效期
                 @file_put_contents($path, $token);//保存
             }
-            @file_put_contents($flagPath, '0');//去flag
+            @file_put_contents($flagPath, '0',LOCK_EX);//去flag
             return $accessToken;
         }
     }
